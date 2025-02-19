@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="image/logo.svg">
+    <meta name="description" content="独立博客列表收录了众多优质的个人博客，展示了工程师、写作者等群体的思考与创作。在这里，你可以发现独立思考者的数字足迹。">
+    <meta name="keywords" content="独立博客,个人博客,博客列表,RSS订阅,技术博客,写作">
+    <meta name="author" content="小吴乐意">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Protocol -->
+    <meta property="og:title" content="独立博客列表 - 发现独立思考者的数字足迹">
+    <meta property="og:description" content="在算法与流量裹挟的时代，独立博客是数字荒漠中的萤火。发现独立思考者的数字足迹，见证清醒者的浪漫。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.xiaowuleyi.com/bloglist/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="独立博客列表 - 发现独立思考者的数字足迹">
+    <meta name="twitter:description" content="在算法与流量裹挟的时代，独立博客是数字荒漠中的萤火。发现独立思考者的数字足迹，见证清醒者的浪漫。">
+    
+    <title>独立博客列表 - 发现独立思考者的数字足迹</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .blog-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card.hidden {
+            display: none;
+        }
+
+        .blog-card.recommended {
+            border: 2px solid #2ecc71;
+            transform: scale(1.02);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-content {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .blog-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #666;
+            flex-shrink: 0;
+        }
+
+        .blog-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .blog-title {
+            font-size: 1.2em;
+            color: #2c3e50;
+            text-decoration: none;
+            margin-right: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        .blog-url {
+            color: #3498db;
+            font-size: 1em;
+            text-decoration: none;
+            margin-right: 20px;
+            white-space: nowrap;
+            font-weight: 500;
+            min-width: 150px;
+        }
+
+        .blog-tags {
+            display: flex;
+            gap: 10px;
+            margin-right: 20px;
+            flex-wrap: nowrap;
+            min-width: 200px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .blog-meta {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .rss-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f26522;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .rss-button:hover {
+            background: #e34e00;
+        }
+
+        .rss-icon {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .sort-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .control-button {
+            background: white;
+            border: 2px solid #3498db;
+            color: #3498db;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .control-button:hover,
+        .control-button.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            padding: 8px 16px;
+            padding-left: 40px;
+            border: 2px solid #3498db;
+            border-radius: 6px;
+            font-size: 0.9em;
+            width: 250px;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: #3498db;
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border: none;
+            background: transparent;
+            padding: 0;
+            color: #666;
+        }
+
+        .clear-search.visible {
+            opacity: 1;
+        }
+
+        .clear-search:hover {
+            color: #333;
+        }
+
+        .random-follow {
+            background: #2ecc71;
+            border-color: #2ecc71;
+            color: white;
+        }
+
+        .random-follow:hover {
+            background: #27ae60;
+            border-color: #27ae60;
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .sort-controls {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .blog-content {
+                flex-wrap: wrap;
+                padding: 15px;
+                gap: 12px;
+            }
+
+            .blog-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .blog-title {
+                font-size: 1.1em;
+                width: calc(100% - 60px);
+                margin-right: 0;
+            }
+
+            .blog-url {
+                font-size: 0.9em;
+                min-width: auto;
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .blog-tags {
+                width: 100%;
+                min-width: auto;
+                margin-right: 0;
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+
+            .tag {
+                padding: 4px 8px;
+                font-size: 0.8em;
+                white-space: nowrap;
+            }
+
+            .blog-meta {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .rss-button {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+
+            .search-input {
+                width: 100%;
+                max-width: none;
+                margin-bottom: 10px;
+            }
+
+            .control-button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>独立博客列表</h1>
+            <p style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: #555; font-size: 1.1em;">在算法与流量裹挟的时代，独立博客是数字荒漠中的萤火。它们用代码构筑孤岛，以文字对抗数据洪流——工程师的深夜诗意、写作者十年未断的电子日记，都是未被驯服的灵魂标本。当碎片化表达淹没思考，这些站点依然完整叙事，像古腾堡时代的手抄本，留存着思想的体温与错别字的人性褶皱。<br><br>「流量终将退潮，灵魂永远在线。」点击链接，见证清醒者的浪漫。<br><br>——<a href="https://www.xiaowuleyi.com" style="color: #3498db; text-decoration: none; font-weight: 500;">小吴乐意</a></p>
+        </header>
+
+        <div class="controls">
+            <div class="sort-controls">
+                <button class="control-button active" data-sort="default">默认排序</button>
+                <button class="control-button" data-sort="name" data-direction="asc">名称 ↑</button>
+                <button class="control-button" data-sort="random">随机排序</button>
+            </div>
+            <div class="search-container">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                <input type="text" class="search-input" placeholder="搜索博客标题、网址或标签...">
+                <button class="clear-search" title="清空搜索">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <button class="control-button random-follow">随机推荐</button>
+        </div>
+
+        <main class="blog-grid">
+
+        </main>
+
+        <footer style="text-align: center; padding: 40px 20px; margin-top: 40px; border-top: 1px solid #eee;">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="color: #666; margin-bottom: 30px;">本站收录的博客均由博主自主提交或从公开渠道整理而来。如果您也想将自己的独立博客添加到列表中，欢迎通过 GitHub 提交 PR。</p>
+                
+                <div style="margin-top: 30px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 20px; font-size: 1.2em;">赞赏支持</h3>
+                    <div style="display: flex; justify-content: center; gap: 30px; margin-top: 20px;">
+                        <div style="text-align: center;">
+                            <img src="image/wx.jpg" alt="微信赞赏" style="width: 200px; height: 200px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <p style="margin-top: 10px; color: #666;">微信赞赏</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="image/zfb.jpg" alt="支付宝赞赏" style="width: 200px; height: 200px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <p style="margin-top: 10px; color: #666;">支付宝赞赏</p>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px; color: #666;">
+                        本项目在 GitHub 开源：<a href="https://github.com/lovexw/blogbase" style="color: #3498db; text-decoration: none;">lovexw/blogbase</a>
+                    </p>
+                    <p style="text-align: center; margin-top: 10px; color: #666;">
+                        原始数据来源：<a href="https://github.com/timqian/chinese-independent-blogs" style="color: #3498db; text-decoration: none;">中文独立博客列表</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const blogGrid = document.querySelector('.blog-grid');
+            const sortButtons = document.querySelectorAll('[data-sort]');
+            const randomFollowButton = document.querySelector('.random-follow');
+            const searchInput = document.querySelector('.search-input');
+            const clearSearchButton = document.querySelector('.clear-search');
+            let blogCards = [];
+            let originalOrder = [];
+
+            // 搜索功能
+            function filterBlogs(searchTerm) {
+                searchTerm = searchTerm.toLowerCase();
+                blogCards.forEach(card => {
+                    const title = card.querySelector('.blog-title').textContent.toLowerCase();
+                    const url = card.querySelector('.blog-url').textContent.toLowerCase();
+                    const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+                    
+                    const isMatch = title.includes(searchTerm) || 
+                                   url.includes(searchTerm) || 
+                                   tags.some(tag => tag.includes(searchTerm));
+                    
+                    card.classList.toggle('hidden', !isMatch);
+                });
+            }
+
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value;
+                filterBlogs(searchTerm);
+                clearSearchButton.classList.toggle('visible', searchTerm.length > 0);
+            });
+
+            clearSearchButton.addEventListener('click', () => {
+                searchInput.value = '';
+                filterBlogs('');
+                clearSearchButton.classList.remove('visible');
+                searchInput.focus();
+            });
+
+            // 从CSV文件加载博客数据
+            fetch('blogs-list.csv')
+                .then(response => response.text())
+                .then(csv => {
+                    const lines = csv.split('\n');
+                    // 跳过标题行
+                    for (let i = 1; i < lines.length; i++) {
+                        const line = lines[i].trim();
+                        if (!line) continue;
+                        
+                        const [title, url, feed, tags] = line.split(',').map(item => item.trim());
+                        const tagList = tags ? tags.split(';').map(tag => tag.trim()) : [];
+                        
+                        const blogCard = document.createElement('article');
+                        blogCard.className = 'blog-card';
+                        
+                        const domain = new URL(url).hostname;
+                        const favicon = `${new URL(url).protocol}//${domain}/favicon.ico`;
+                        const initial = title.charAt(0);
+                        
+                        blogCard.innerHTML = `
+                            <div class="blog-content">
+                                <div class="blog-icon">
+                                    <img src="${favicon}" onerror="this.outerHTML='${initial}'">
+                                </div>
+                                <a href="${url}" class="blog-title" target="_blank"><span class="blog-index"></span>${title}</a>
+                                <a href="${url}" class="blog-url" target="_blank">${domain}</a>
+                                <div class="blog-tags">
+                                    ${tagList.slice(0, 4).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                                </div>
+                                <div class="blog-meta">
+                                    <a href="${feed || '#'}" class="rss-button">
+                                        <svg class="rss-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M6.18,15.64A2.18,2.18 0 0,1 8.36,17.82C8.36,19 7.38,20 6.18,20C5,20 4,19 4,17.82A2.18,2.18 0 0,1 6.18,15.64M4,4.44A15.56,15.56 0 0,1 19.56,20H16.73A12.73,12.73 0 0,0 4,7.27V4.44M4,10.1A9.9,9.9 0 0,1 13.9,20H11.07A7.07,7.07 0 0,0 4,12.93V10.1Z"/>
+                                        </svg>
+                                        RSS订阅
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        
+                        blogGrid.appendChild(blogCard);
+                    }
+                    
+                    blogCards = Array.from(document.querySelectorAll('.blog-card'));
+                    originalOrder = [...blogCards];
+
+                    // 更新博客序号的函数
+                    function updateBlogIndexes() {
+                        document.querySelectorAll('.blog-card').forEach((card, index) => {
+                            const indexSpan = card.querySelector('.blog-index');
+                            indexSpan.textContent = `${index + 1}. `;
+                        });
+                    }
+
+                    // 排序函数
+                    function sortBlogs(type, direction = 'asc') {
+                        const cards = [...blogCards];
+                        switch(type) {
+                            case 'name':
+                                cards.sort((a, b) => {
+                                    const titleA = a.querySelector('.blog-title').textContent;
+                                    const titleB = b.querySelector('.blog-title').textContent;
+                                    return direction === 'asc' ? 
+                                        titleA.localeCompare(titleB) : 
+                                        titleB.localeCompare(titleA);
+                                });
+                                break;
+                            case 'tags':
+                                cards.sort((a, b) => {
+                                    const tagsA = a.querySelectorAll('.tag').length;
+                                    const tagsB = b.querySelectorAll('.tag').length;
+                                    return tagsB - tagsA; // 默认降序，标签多的排前面
+                                });
+                                break;
+                            case 'random':
+                                for (let i = cards.length - 1; i > 0; i--) {
+                                    const j = Math.floor(Math.random() * (i + 1));
+                                    [cards[i], cards[j]] = [cards[j], cards[i]];
+                                }
+                                break;
+                            default:
+                                cards.sort((a, b) => {
+                                    return originalOrder.indexOf(a) - originalOrder.indexOf(b);
+                                });
+                        }
+                        blogGrid.innerHTML = '';
+                        cards.forEach(card => blogGrid.appendChild(card));
+                        updateBlogIndexes();
+                    }
+
+                    // 排序按钮点击事件
+                    sortButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const sortType = button.dataset.sort;
+                            if (sortType === 'name') {
+                                const currentDirection = button.dataset.direction;
+                                const newDirection = currentDirection === 'asc' ? 'desc' : 'asc';
+                                button.dataset.direction = newDirection;
+                                button.textContent = `名称 ${newDirection === 'asc' ? '↑' : '↓'}`;
+                                sortBlogs(sortType, newDirection);
+                            } else {
+                                sortButtons.forEach(btn => btn.classList.remove('active'));
+                                button.classList.add('active');
+                                sortBlogs(sortType);
+                            }
+                        });
+                    });
+
+                    // 初始化博客序号
+                    updateBlogIndexes();
+
+                    // 随机关注功能
+                    randomFollowButton.addEventListener('click', () => {
+                        blogCards.forEach(card => card.classList.remove('recommended'));
+                        const randomIndex = Math.floor(Math.random() * blogCards.length);
+                        blogCards[randomIndex].classList.add('recommended');
+                        blogCards[randomIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading blog data:', error);
+                });
+        });
+    </script>
+</body>
+</html>
