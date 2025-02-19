@@ -16,7 +16,7 @@
 
 ## 在线演示
 
-访问：[独立博客列表](https://indie-blogs.pages.dev)
+访问：[独立博客列表](https://blogbase.xiaowuleyi.com)
 
 ## 如何提交你的博客
 
