@@ -30,7 +30,7 @@
 
 示例：
 ```csv
-小吴乐意'blog, https://www.xiaowuleyi.com/, https://blog.xiaowuleyi/rss.php, 生活随想; 比特币; 商业思考
+小吴乐意'blog, https://www.xiaowuleyi.com/, https://blog.xiaowuleyi.com/rss.php, 生活随想; 比特币; 商业思考
 ```
 
 > 注意事项：
