@@ -2,7 +2,7 @@
 
 在算法与流量裹挟的时代，这是一个独立博客的展示平台，让我们一起见证数字世界中的「个人主义」星辰。
 
-![预览图](https://user-images.githubusercontent.com/1472352/266178611-c3ee745c-0cf7-4c92-a800-6c0fb7ae14f3.png)
+![预览图](https://raw.githubusercontent.com/lovexw/blogbase/main/image/homepage.jpg)
 
 ## 特性
 
