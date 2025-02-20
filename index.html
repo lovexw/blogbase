@@ -409,6 +409,143 @@
                             <p style="margin-top: 10px; color: #666;">支付宝赞赏</p>
                         </div>
                     </div>
+                    <div class="sponsors-section" style="margin-top: 40px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 20px; font-size: 1.2em;">感谢赞赏</h3>
+                        <div class="sponsors-carousel">
+                            <div class="sponsors-track">
+                                <!-- 赞助者信息示例 -->
+                                <div class="sponsor-item">
+                                    <div class="sponsor-card">
+                                        <img src="https://avatars.githubusercontent.com/u/1" alt="赞助者">
+                                        <p>张三</p>
+                                    </div>
+                                </div>
+                                <div class="sponsor-item">
+                                    <div class="sponsor-card">
+                                        <img src="https://avatars.githubusercontent.com/u/2" alt="赞助者">
+                                        <p>李四</p>
+                                    </div>
+                                </div>
+                                <div class="sponsor-item">
+                                    <div class="sponsor-card">
+                                        <img src="https://avatars.githubusercontent.com/u/3" alt="赞助者">
+                                        <p>王五</p>
+                                    </div>
+                                </div>
+                                <!-- 复制几个项目以实现无缝循环 -->
+                                <div class="sponsor-item">
+                                    <div class="sponsor-card">
+                                        <img src="https://avatars.githubusercontent.com/u/1" alt="赞助者">
+                                        <p>张三</p>
+                                    </div>
+                                </div>
+                                <div class="sponsor-item">
+                                    <div class="sponsor-card">
+                                        <img src="https://avatars.githubusercontent.com/u/2" alt="赞助者">
+                                        <p>李四</p>
+                                    </div>
+                                </div>
+                                <div class="sponsor-item">
+                                    <div class="sponsor-card">
+                                        <img src="https://avatars.githubusercontent.com/u/3" alt="赞助者">
+                                        <p>王五</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <style>
+                            .sponsors-carousel {
+                                perspective: 1000px;
+                                height: 200px;
+                                position: relative;
+                                overflow: visible;
+                                margin: 0 auto;
+                                padding: 10px 0;
+                                max-width: 800px;
+                            }
+
+                            .sponsors-track {
+                                display: flex;
+                                gap: 30px;
+                                position: absolute;
+                                left: 0;
+                                animation: carousel 20s linear infinite;
+                                transform-style: preserve-3d;
+                            }
+
+                            .sponsor-item {
+                                flex: 0 0 auto;
+                                width: 120px;
+                                height: 160px;
+                                transform-style: preserve-3d;
+                                animation: float 3s ease-in-out infinite;
+                            }
+
+                            .sponsor-card {
+                                width: 100%;
+                                height: 100%;
+                                position: relative;
+                                transform-style: preserve-3d;
+                                transition: transform 0.5s;
+                                text-align: center;
+                            }
+
+                            .sponsor-card:hover {
+                                transform: rotateY(180deg);
+                            }
+
+                            .sponsor-card img {
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 50%;
+                                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                                margin-bottom: 10px;
+                            }
+
+                            .sponsor-card p {
+                                color: #666;
+                                font-size: 0.9em;
+                                margin-top: 8px;
+                            }
+
+                            @keyframes carousel {
+                                0% {
+                                    transform: translateX(100%);
+                                }
+                                100% {
+                                    transform: translateX(-100%);
+                                }
+                            }
+
+                            @keyframes float {
+                                0%, 100% {
+                                    transform: translateY(0) rotateY(0);
+                                }
+                                50% {
+                                    transform: translateY(-8px) rotateY(5deg);
+                                }
+                            }
+
+                            @media (max-width: 768px) {
+                                .sponsors-carousel {
+                                    height: 160px;
+                                }
+
+                                .sponsor-item {
+                                    width: 100px;
+                                    height: 140px;
+                                }
+
+                                .sponsor-card img {
+                                    width: 60px;
+                                    height: 60px;
+                                }
+                            }
+                        </style>
+                                <p style="margin-top: 8px; color: #666; font-size: 0.9em;">王五</p>
+                            </div>
+                        </div>
+                    </div>
                     <p style="text-align: center; margin-top: 20px; color: #666;">
                         本项目在 GitHub 开源：<a href="https://github.com/lovexw/blogbase" style="color: #3498db; text-decoration: none;">lovexw/blogbase</a>
                     </p>
