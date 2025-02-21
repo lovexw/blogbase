@@ -4,6 +4,7 @@
 
 ![预览图](https://raw.githubusercontent.com/lovexw/blogbase/main/image/homepage.jpg)
 
+
 ## 特性
 
 - 🎨 简洁优雅的界面设计
@@ -98,11 +99,3 @@ php -S localhost:8000
 ## 许可
 
 MIT License
-
-## 致谢
-
-感谢所有独立博主们的坚持。正是你们的存在，让这个互联网依然保持着活力与独特的个人色彩。
-
----
-
-> 流量终将退潮，但记录与分享的热情永不熄灭。

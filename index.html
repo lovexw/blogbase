@@ -128,7 +128,9 @@
             margin-right: 20px;
             white-space: nowrap;
             font-weight: 500;
-            min-width: 150px;
+            width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .blog-tags {
@@ -136,7 +138,17 @@
             gap: 10px;
             margin-right: 20px;
             flex-wrap: nowrap;
-            min-width: 200px;
+            min-width: 300px;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .blog-tags::-webkit-scrollbar {
+            display: none;
         }
 
         .tag {
@@ -146,6 +158,8 @@
             font-size: 0.85em;
             color: #666;
             font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .blog-meta {
@@ -367,6 +381,52 @@
             <p style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: #555; font-size: 1.1em;">在算法与流量裹挟的时代，独立博客是数字荒漠中的萤火。它们用代码构筑孤岛，以文字对抗数据洪流——工程师的深夜诗意、写作者十年未断的电子日记，都是未被驯服的灵魂标本。当碎片化表达淹没思考，这些站点依然完整叙事，像古腾堡时代的手抄本，留存着思想的体温与错别字的人性褶皱。<br><br>「流量终将退潮，灵魂永远在线。」点击链接，见证清醒者的浪漫。<br><br>——<a href="https://www.xiaowuleyi.com" style="color: #3498db; text-decoration: none; font-weight: 500;">小吴乐意</a></p>
         </header>
 
+        <div class="sponsors-section" style="margin: 40px auto; max-width: 800px;">
+            <h3 style="color: #2c3e50; margin-bottom: 20px; font-size: 1.2em;">感谢赞赏</h3>
+            <div class="sponsors-carousel">
+                <div class="sponsors-track">
+                    <!-- 赞助者信息示例 -->
+                    <div class="sponsor-item">
+                        <div class="sponsor-card">
+                            <img src="https://avatars.githubusercontent.com/u/1" alt="赞助者">
+                            <p>张三</p>
+                        </div>
+                    </div>
+                    <div class="sponsor-item">
+                        <div class="sponsor-card">
+                            <img src="https://avatars.githubusercontent.com/u/2" alt="赞助者">
+                            <p>李四</p>
+                        </div>
+                    </div>
+                    <div class="sponsor-item">
+                        <div class="sponsor-card">
+                            <img src="https://avatars.githubusercontent.com/u/3" alt="赞助者">
+                            <p>王五</p>
+                        </div>
+                    </div>
+                    <!-- 复制几个项目以实现无缝循环 -->
+                    <div class="sponsor-item">
+                        <div class="sponsor-card">
+                            <img src="https://avatars.githubusercontent.com/u/1" alt="赞助者">
+                            <p>张三</p>
+                        </div>
+                    </div>
+                    <div class="sponsor-item">
+                        <div class="sponsor-card">
+                            <img src="https://avatars.githubusercontent.com/u/2" alt="赞助者">
+                            <p>李四</p>
+                        </div>
+                    </div>
+                    <div class="sponsor-item">
+                        <div class="sponsor-card">
+                            <img src="https://avatars.githubusercontent.com/u/3" alt="赞助者">
+                            <p>王五</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="controls">
             <div class="sort-controls">
                 <button class="control-button active" data-sort="default">默认排序</button>
@@ -409,50 +469,7 @@
                             <p style="margin-top: 10px; color: #666;">支付宝赞赏</p>
                         </div>
                     </div>
-                    <div class="sponsors-section" style="margin-top: 40px;">
-                        <h3 style="color: #2c3e50; margin-bottom: 20px; font-size: 1.2em;">感谢赞赏</h3>
-                        <div class="sponsors-carousel">
-                            <div class="sponsors-track">
-                                <!-- 赞助者信息示例 -->
-                                <div class="sponsor-item">
-                                    <div class="sponsor-card">
-                                        <img src="https://avatars.githubusercontent.com/u/1" alt="赞助者">
-                                        <p>张三</p>
-                                    </div>
-                                </div>
-                                <div class="sponsor-item">
-                                    <div class="sponsor-card">
-                                        <img src="https://avatars.githubusercontent.com/u/2" alt="赞助者">
-                                        <p>李四</p>
-                                    </div>
-                                </div>
-                                <div class="sponsor-item">
-                                    <div class="sponsor-card">
-                                        <img src="https://avatars.githubusercontent.com/u/3" alt="赞助者">
-                                        <p>王五</p>
-                                    </div>
-                                </div>
-                                <!-- 复制几个项目以实现无缝循环 -->
-                                <div class="sponsor-item">
-                                    <div class="sponsor-card">
-                                        <img src="https://avatars.githubusercontent.com/u/1" alt="赞助者">
-                                        <p>张三</p>
-                                    </div>
-                                </div>
-                                <div class="sponsor-item">
-                                    <div class="sponsor-card">
-                                        <img src="https://avatars.githubusercontent.com/u/2" alt="赞助者">
-                                        <p>李四</p>
-                                    </div>
-                                </div>
-                                <div class="sponsor-item">
-                                    <div class="sponsor-card">
-                                        <img src="https://avatars.githubusercontent.com/u/3" alt="赞助者">
-                                        <p>王五</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <style>
                             .sponsors-carousel {
                                 perspective: 1000px;
@@ -542,7 +559,6 @@
                                 }
                             }
                         </style>
-                                <p style="margin-top: 8px; color: #666; font-size: 0.9em;">王五</p>
                             </div>
                         </div>
                     </div>
